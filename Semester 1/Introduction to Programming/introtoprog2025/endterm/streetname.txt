@@ -1,0 +1,4 @@
+Debrecen;Piac utca;5.5;4
+Budapest;Bartók Béla út;8.0;12
+Debrecen;Bartók Béla út;6.2;7
+Szeged;Zákány utca;4.2;0
