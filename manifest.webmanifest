@@ -1,0 +1,13 @@
+{
+  "name": "UniDeb Unofficial",
+  "short_name": "UniDeb",
+  "description": "A student-first resource hub for University of Debrecen Computer Science.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#060914",
+  "theme_color": "#0a1020",
+  "icons": [
+    {"src":"UniLogo.png","sizes":"192x192","type":"image/png"},
+    {"src":"UniLogo.png","sizes":"512x512","type":"image/png"}
+  ]
+}
