@@ -49,6 +49,10 @@
       gitignore: "⚙️",
       java: "☕",
       js: "📜",
+      doc: "📃",
+      docx: "📃",
+      sql: "🗄️",
+      mhtml: "🌐",
     };
     return map[ext] || "📄";
   }

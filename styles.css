@@ -1,35 +1,79 @@
-/* ---------- Base ---------- */
+/* =========================================================
+   UniDeb Unofficial — premium theme
+   ========================================================= */
+
 :root {
-  --bg: #0f1115;
-  --surface: #171a21;
-  --surface-hover: #1f232c;
-  --text: #e8eaed;
-  --muted: #9aa0a6;
-  --accent: #5b8cff;
-  --accent-soft: rgba(91, 140, 255, 0.15);
-  --border: #262a33;
-  --radius: 14px;
+  --bg: #06070a;
+  --bg-elevated: #0b0d12;
+  --surface: #12141b;
+  --surface-hover: #171a23;
+  --surface-glass: rgba(18, 20, 27, 0.6);
+  --text: #eef0f4;
+  --muted: #8b90a0;
+  --muted-2: #5f6474;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --accent: #6d8bff;
+  --accent-2: #a374ff;
+  --accent-soft: rgba(109, 139, 255, 0.14);
+  --accent-gradient: linear-gradient(120deg, #6d8bff 0%, #9b7dff 55%, #c983f2 100%);
+
+  --sem2: #38d9c9;
+  --sem2-soft: rgba(56, 217, 201, 0.14);
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 0 1px rgba(109, 139, 255, 0.25), 0 12px 40px rgba(109, 139, 255, 0.12);
+
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg) url("Background.jpg") center / cover fixed no-repeat;
-  color: var(--text);
-  line-height: 1.5;
+::selection {
+  background: rgba(109, 139, 255, 0.35);
+  color: #fff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient background: base photo + soft gradient mesh + vignette */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(15, 17, 21, 0.48);
-  pointer-events: none;
   z-index: 0;
+  background-image:
+    radial-gradient(1200px 700px at 12% -10%, rgba(109, 139, 255, 0.16), transparent 60%),
+    radial-gradient(1000px 650px at 110% 10%, rgba(163, 116, 255, 0.14), transparent 55%),
+    radial-gradient(900px 600px at 50% 120%, rgba(56, 217, 201, 0.08), transparent 55%),
+    linear-gradient(180deg, rgba(6, 7, 10, 0.86) 0%, rgba(6, 7, 10, 0.94) 100%),
+    url("Background.jpg");
+  background-size: cover, cover, cover, cover, cover;
+  background-position: center, center, center, center, center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  pointer-events: none;
 }
 
 body > * {
@@ -42,143 +86,312 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
 /* ---------- Header / Nav ---------- */
 .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 18px 44px;
   position: sticky;
   top: 0;
-  background: transparent;
-  z-index: 10;
+  background: rgba(6, 7, 10, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  z-index: 40;
 }
 
 .site-header .brand {
   display: flex;
   align-items: center;
   gap: 12px;
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
 }
 
 .brand-logo {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+  border-radius: 9px;
 }
 
 .back-link {
-  color: var(--accent);
+  color: var(--muted);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
 }
 
 /* ---------- Home page ---------- */
 .hero {
-  padding: 60px 40px 30px;
+  padding: 88px 40px 34px;
   text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.hero .kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(109, 139, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 22px;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 14px;
+  line-height: 1.12;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .hero p {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.search-bar.home {
+  max-width: 640px;
+  margin: 0 auto 8px;
+  padding: 0 40px;
+}
+
+.quick-links {
+  max-width: 1120px;
+  margin: 34px auto 0;
+  padding: 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-glass);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.quick-link:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.semester-label {
+  max-width: 1120px;
+  margin: 56px auto 0;
+  padding: 0 40px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.semester-label .num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.semester-label .label-text {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.semester-label .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
 }
 
 .subject-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px 40px 60px;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  padding: 22px 40px 60px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 .subject-card {
-  background: transparent;
+  position: relative;
+  background: var(--surface-glass);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 22px;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  padding: 26px 24px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.subject-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
 }
 
 .subject-card:hover {
-  background: rgba(31, 35, 44, 0.35);
-  border-color: var(--accent);
-  transform: translateY(-3px);
+  background: var(--surface-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.subject-card:hover::before {
+  opacity: 1;
+}
+
+.subject-card .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  font-size: 1.25rem;
+  margin-bottom: 16px;
 }
 
 .subject-card h2 {
-  font-size: 1.15rem;
+  font-size: 1.08rem;
+  font-weight: 700;
   margin: 0 0 6px;
+  line-height: 1.3;
 }
 
-.subject-card span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.semester-label {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 30px 40px 0;
-  color: var(--muted);
+.subject-card .meta {
+  color: var(--muted-2);
   font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+}
+
+.subject-card .arrow {
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  color: var(--muted-2);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.subject-card:hover .arrow {
+  transform: translate(3px, -3px);
+  color: var(--accent);
 }
 
 /* ---------- Subject page ---------- */
 .subject-hero {
-  padding: 40px 40px 10px;
+  padding: 56px 40px 14px;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
+.semester-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(109, 139, 255, 0.3);
+}
+
+.semester-pill.sem2 {
+  color: var(--sem2);
+  background: var(--sem2-soft);
+  border-color: rgba(56, 217, 201, 0.32);
+}
+
 .subject-hero h1 {
-  font-size: 1.9rem;
-  margin-bottom: 6px;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  margin: 0 0 8px;
 }
 
 .subject-hero p {
   color: var(--muted);
+  font-size: 0.98rem;
 }
 
 .content {
   max-width: 900px;
   margin: 0 auto;
-  padding: 10px 40px 80px;
+  padding: 8px 40px 90px;
 }
 
 .section {
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 .section h2 {
-  font-size: 1.3rem;
+  font-size: 1.18rem;
+  font-weight: 700;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   margin-bottom: 18px;
 }
 
-/* Past questions list */
+/* File list */
 .file-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
 }
 
 .file-list li a {
@@ -187,22 +400,24 @@ a {
   min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
-  gap: 10px;
-  background: rgba(15, 17, 21, 0.22);
+  gap: 11px;
+  background: var(--surface-glass);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  font-size: 0.92rem;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 
 .file-list li a:hover {
   border-color: var(--accent);
-  background: rgba(31, 35, 44, 0.42);
+  background: var(--surface-hover);
+  transform: translateX(2px);
 }
 
 .file-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 10px;
 }
 
@@ -229,15 +444,21 @@ a {
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 .image-gallery img {
   width: 100%;
-  height: 140px;
+  height: 148px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.image-gallery a:hover img {
+  border-color: var(--accent);
+  transform: scale(1.015);
 }
 
 .resource-folder {
@@ -248,7 +469,7 @@ a {
 
 @media (max-width: 600px) {
   .site-header {
-    padding: 16px 20px;
+    padding: 14px 18px;
   }
 
   .content,
@@ -257,13 +478,25 @@ a {
     padding-right: 20px;
   }
 
-  .site-header .brand {
-    font-size: 1rem;
+  .hero {
+    padding: 60px 20px 24px;
+  }
+
+  .search-bar.home,
+  .quick-links,
+  .semester-label,
+  .subject-grid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .site-header .brand span {
+    display: none;
   }
 
   .brand-logo {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   .lightbox-prev,
@@ -279,7 +512,7 @@ a {
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   padding: 20px 22px;
   color: var(--text);
 }
@@ -295,38 +528,33 @@ a {
 
 /* ---------- Search ---------- */
 .search-bar {
-  margin: 0 0 20px;
-}
-
-.search-bar.home {
-  max-width: 1100px;
-  margin: 0 auto 10px;
-  padding: 0 40px;
+  margin: 0 0 22px;
 }
 
 .search-bar input {
   width: 100%;
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 13px 18px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: rgba(15, 17, 21, 0.35);
+  background: var(--surface-glass);
   color: var(--text);
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .search-bar input::placeholder {
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
 .search-bar input:focus {
   border-color: var(--accent);
-  background: rgba(31, 35, 44, 0.5);
+  background: var(--surface-hover);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 .no-results {
-  margin: -6px 0 20px;
+  margin: -8px 0 20px;
   color: var(--muted);
   font-size: 0.9rem;
   display: none;
@@ -351,13 +579,13 @@ a {
 }
 
 .count-badge {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--muted);
-  background: rgba(91, 140, 255, 0.1);
+  background: var(--accent-soft);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 2px 10px;
+  padding: 3px 11px;
   white-space: nowrap;
 }
 
@@ -377,28 +605,28 @@ a {
 
 /* ---------- Progress bar ---------- */
 .progress-bar {
-  margin: 0 0 30px;
+  margin: 0 0 32px;
 }
 
 .progress-track {
   height: 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: var(--accent);
+  background: var(--accent-gradient);
   transition: width 0.3s ease;
 }
 
 .progress-text {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
 /* ---------- File icons ---------- */
@@ -420,9 +648,9 @@ a {
 
 .copy-btn {
   flex: 0 0 auto;
-  background: rgba(15, 17, 21, 0.22);
+  background: var(--surface-glass);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   color: var(--muted);
   cursor: pointer;
   padding: 0 14px;
@@ -433,13 +661,13 @@ a {
 .copy-btn:hover {
   color: var(--text);
   border-color: var(--accent);
-  background: rgba(31, 35, 44, 0.42);
+  background: var(--surface-hover);
 }
 
 /* ---------- Opened / visited resources ---------- */
 .file-list li a.opened {
-  border-color: rgba(91, 140, 255, 0.5);
-  opacity: 0.75;
+  border-color: rgba(109, 139, 255, 0.5);
+  opacity: 0.7;
 }
 
 .file-list li a.opened:not(.resource-folder)::after {
@@ -470,12 +698,13 @@ a {
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 6, 8, 0.92);
+  background: rgba(3, 4, 6, 0.94);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 40px;
+  backdrop-filter: blur(6px);
 }
 
 .lightbox-overlay.open {
@@ -485,15 +714,15 @@ a {
 .lightbox-img {
   max-width: 90vw;
   max-height: 80vh;
-  border-radius: 10px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
   position: fixed;
-  background: rgba(23, 26, 33, 0.7);
+  background: rgba(18, 20, 27, 0.75);
   border: 1px solid var(--border);
   color: var(--text);
   border-radius: 999px;
@@ -501,6 +730,7 @@ a {
   font-size: 1.3rem;
   width: 44px;
   height: 44px;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .lightbox-close {
@@ -524,6 +754,7 @@ a {
 .lightbox-prev:hover,
 .lightbox-next:hover {
   border-color: var(--accent);
+  background: var(--surface-hover);
 }
 
 .lightbox-caption {
@@ -544,7 +775,8 @@ a {
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: rgba(23, 26, 33, 0.75);
+  background: rgba(18, 20, 27, 0.8);
+  backdrop-filter: blur(8px);
   color: var(--text);
   font-size: 1.2rem;
   cursor: pointer;
@@ -572,7 +804,7 @@ a {
   bottom: 30px;
   transform: translate(-50%, 10px);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   color: var(--text);
   padding: 10px 18px;
   border-radius: 999px;
@@ -581,6 +813,7 @@ a {
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
   z-index: 200;
+  box-shadow: var(--shadow-md);
 }
 
 #toast.show {
